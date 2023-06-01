@@ -1,4 +1,4 @@
-module uconv
+module github.com/adams-Thomas/uconv
 
 go 1.20
 
