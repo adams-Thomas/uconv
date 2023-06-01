@@ -7,7 +7,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"uconv/lib"
+
+	"github.com/adams-Thomas/uconv/lib"
 
 	"github.com/spf13/cobra"
 )

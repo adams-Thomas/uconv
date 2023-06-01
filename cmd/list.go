@@ -4,7 +4,7 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"uconv/lib"
+	"github.com/adams-Thomas/uconv/lib"
 
 	"github.com/spf13/cobra"
 )
