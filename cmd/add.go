@@ -11,6 +11,7 @@ import (
 // addCmd represents the add command
 var addCmd = &cobra.Command{
 	Use:     "add <FROM> <TO> <VALUE>",
+	Args:    cobra.ExactArgs(3),
 	Example: "  uconv add rem px 16\n\nWhere 1 rem is equal to 16 px\nTo use the conversion then run:\n  uconv rempx <value>",
 	// Args:    cobra.ExactArgs(3),
 	Short: "Add a new conversion cli",
