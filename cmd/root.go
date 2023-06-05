@@ -9,8 +9,9 @@ import (
 	"strings"
 
 	"github.com/adams-Thomas/uconv/lib"
-
+	"github.com/adrg/xdg"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -52,13 +53,35 @@ func Execute() {
 }
 
 func init() {
-	// Check to make sure the converstions file exists
-	// If it does the continue as normal, if it doesn't then create it in the lib folder and add base conversions
+	/**
+	Check if the uconv folder and text file exits
+	This code is starting to become messy, should really find a way to clean it up.
 
-	_, err := os.Stat("./conversions.txt")
+	First checks to make sure the uconv folder exists in app dir
+	If it does not then make it, then make the conversions file because it will be missing if
+	uconv dir is missing
+
+	If the uconv dir is there, double check the conversions file exists because it is possible
+	the conversions file can be missing but the dir still be there.
+	*/
+
+	dirPath := fmt.Sprintf("%s\\uconv", xdg.DataHome)
+	filePath := fmt.Sprintf("%s\\uconv\\conversions.txt", xdg.DataHome)
+	_, err := os.Stat(dirPath)
+
 	if err != nil && strings.Contains(err.Error(), "cannot find the file") {
-		fmt.Printf("Conversion file not found, adding it...\n\n")
-		f, createError := os.Create("./conversions.txt")
+		fmt.Println("uconv dir not found, adding it")
+		folderErr := os.Mkdir(dirPath, os.ModePerm)
+
+		if folderErr != nil {
+			panic(err)
+		}
+	}
+
+	_, fileErr := os.Stat(filePath)
+	if fileErr != nil && strings.Contains(fileErr.Error(), "cannot find the file") {
+		fmt.Println("Base conversions data not found, adding")
+		f, createError := os.Create(filePath)
 		if createError != nil {
 			panic(err)
 		}
@@ -67,4 +90,7 @@ func init() {
 		f.WriteString(defaults)
 		f.Sync()
 	}
+
+	viper.SetDefault("dirPath", dirPath)
+	viper.SetDefault("filePath", filePath)
 }

@@ -6,10 +6,13 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+
+	"github.com/spf13/viper"
 )
 
 func Remove(args []string) {
-	file, err := ioutil.ReadFile("./conversions.txt")
+	filePath := viper.GetString("filePath")
+	file, err := ioutil.ReadFile(filePath)
 	Check(err)
 
 	var conversion string
@@ -28,7 +31,7 @@ func Remove(args []string) {
 	newSplit := fileSplit[:index]
 	newSplit = append(newSplit, fileSplit[index+1:]...)
 
-	edit, err := os.Create("./conversions.txt")
+	edit, err := os.Create(filePath)
 	Check(err)
 	defer edit.Close()
 	edit.WriteString(strings.Join(newSplit, "\n"))

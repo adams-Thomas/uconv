@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/spf13/viper"
 )
 
 // FORMATTING options
@@ -41,7 +43,8 @@ func List(args []string) {
 }
 
 func ListFile(formatting string) {
-	dat, err := os.Open("./conversions.txt")
+	filePath := viper.GetString("filePath")
+	dat, err := os.Open(filePath)
 
 	if err != nil {
 		panic(err)

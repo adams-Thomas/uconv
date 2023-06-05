@@ -6,6 +6,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/spf13/viper"
 )
 
 // Ensure 3rd arg is a number/value/float
@@ -18,7 +20,8 @@ func Add(args []string) {
 		return
 	}
 
-	dat, fileErr := os.OpenFile("./conversions.txt", os.O_RDWR, 0644)
+	filePath := viper.GetString("filePath")
+	dat, fileErr := os.OpenFile(filePath, os.O_RDWR, 0644)
 	if fileErr != nil {
 		panic(err)
 	}

@@ -1,4 +1,0 @@
-cel,fh,32
-rem,px,16
-mile,km,1.60934
-m,feet,3.28084

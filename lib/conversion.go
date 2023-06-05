@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 type conversion struct {
@@ -93,7 +94,8 @@ func Run(cmd *cobra.Command, args []string) {
 }
 
 func SearchFile(conv string) []string {
-	dat, err := os.Open("./conversions.txt")
+	filePath := viper.GetString("filePath")
+	dat, err := os.Open(filePath)
 
 	if err != nil {
 		panic(err)
