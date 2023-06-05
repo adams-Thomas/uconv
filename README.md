@@ -14,6 +14,15 @@
 </p>
 
 <h3>
+Planned updates:
+</h3>
+<ol>
+<li>Improve installation files/instructions</li>
+<li>Add Reset and Location commands</li>
+<li>Change from text file to badger for conversion storage</li>
+</ol>
+
+<h3>
   Installation
 </h3>
   1. Download executable from the releases page, here <b>Add the link when released</b></br>
