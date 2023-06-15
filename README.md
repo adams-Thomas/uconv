@@ -25,7 +25,7 @@ Planned updates:
 <h3>
   Installation
 </h3>
-  ~~1. Download executable from the releases page, here~~
+  <s>1. Download executable from the releases page, here</s>
   </br>
   2. Download the zip code and run it as a regular Go program </br>
   3. If you have go installed run
